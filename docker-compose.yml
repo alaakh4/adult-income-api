@@ -1,0 +1,12 @@
+services:
+  adult-income-api:
+    build: .
+    container_name: adult-income-api
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python","-c","import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s

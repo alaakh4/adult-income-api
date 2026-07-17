@@ -1,0 +1,18 @@
+#python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+venv/
+
+#vs code
+.vscode/
+.idea/
+
+#data
+data/
+notbooks/
+
+#OS
+.DS_Store
+Thumbs.db
