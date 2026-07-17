@@ -1,0 +1,38 @@
+name : Adult Income API
+
+on: 
+  push:
+  pull_request:
+
+job:
+  test:
+    runs-on:ubuntu-latest
+
+    steps:
+      - name: Get Project
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version:"3.12"
+          cache:"pip"
+
+      - name: Install dependencies
+        uses: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        uses: python -m pytest -v
+
+  build-docker:
+    need:test
+    runs-on:ubuntu-latest
+
+    steps:
+      - name: Get Project
+        uses: actions/checkout@v4
+
+      - name: Build docker image
+        uses: docker build -t adult-income-api:ci .
