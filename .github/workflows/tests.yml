@@ -6,7 +6,7 @@ on:
 
 job:
   test:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Get Project
@@ -27,8 +27,8 @@ job:
         uses: python -m pytest -v
 
   build-docker:
-    need:test
-    runs-on:ubuntu-latest
+    need: test
+    runs-on: ubuntu-latest
 
     steps:
       - name: Get Project
